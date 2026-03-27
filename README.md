@@ -19,10 +19,10 @@ in "./ml_io/netcdf/socat"
 
 7. Annual rate of air CO2. URL: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_gl.txt. Download the globally averaged marine surface annual mean growth rates and used the template "trend.correction.xlsx" to calculate the fitted decadal trend. Save the results as "./ml_io/trend.txt".
 
-8. Trend correction. Use the fitted trend as the first estimate of the ocean CO2 trend and then use the leave-one-year-out (LOYO) validation method iteratively to obtain the ocean CO2 trend not accounted for by the fitted trend (see "ml3-tf.py"). I suggest using 
-the gradient boot (GB) machine method (implemented by LightGBM) first as it is very fast; then use the random forest (RF) and neural network (NN) methods starting with the converged trend. The RF and NN are much slower than GB, especially the NN method. If you use them starting from the fitted rate, you may not be able to get a converged trend within a reasonable time. 
+8. Trend correction. Use the fitted trend as the initial guess of the ocean CO2 trend and then use the leave-one-year-out (LOYO) validation method iteratively to obtain the ocean CO2 trend not accounted for by the fitted trend (see "ml3-tf.py"). I suggest using 
+the gradient boot (GB) machine method first as it is very fast; then use the random forest (RF) and neural network (NN) methods starting with the converged trend. The RF and NN are much slower than GB, especially the NN method. If you use them starting from the fitted rate, you may not be able to get a converged trend within a reasonable time. 
 
-9. CO2 mapping and flux calculation. Use fitted and corrected trends for CO2 mapping. See "ml3-tf.py".
+9. CO2 mapping and flux calculation. Use the fitted and corrected trends for CO2 mapping. See "ml3-tf.py".
 
 
  
