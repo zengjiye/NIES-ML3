@@ -1,6 +1,6 @@
 # NIES-ML3
 A machine learning package used to interpolate observed surfuace ocean CO2 and calculate air-sea CO2 flux. It is based on
-the code I used to produced the dataset for GCB-2025 with minor revisions. Please contact <zeng@nies.go.jp> for any questions.
+the code I used to produced the dataset for GCB-2025 with minor revisions. Please refer to doi:10.3389/fmars.2022.989233 and contact me by the email in the reference for any questions.
 
 A brief summary for using the package: 
 
