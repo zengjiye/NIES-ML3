@@ -87,7 +87,7 @@ def mapping_f(ml3, rate):
             reg.fit(X, Y, epochs=nn_epochs, verbose=0, batch_size=batch_size)
         else:
             reg.fit(X, Y)
-        bias = reg.predict(X, verbose=0).reshape(Y.shape) - Y
+        bias = reg.predict(X).reshape(Y.shape) - Y
         print(ml3, seed+1, Y.std()*bias)
         models.append(reg)
 
