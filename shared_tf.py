@@ -78,7 +78,6 @@ def mapping_f(ml3, rate):
     Year, Y, Y_avg, Y_std, X, X_avg, X_std = ml_data(rate)
 
     models = []
-    bias = 0.0
     
     for seed in range(n_seed):
     
@@ -86,15 +85,11 @@ def mapping_f(ml3, rate):
         print(ml3, seed+1)
         if ml3 == 'nn':
             reg.fit(X, Y, epochs=nn_epochs, verbose=0, batch_size=batch_size)
-            df = np.abs(reg.predict(X, verbose=0).reshape(Y.shape) - Y)
         else:
             reg.fit(X, Y)
-            df = np.abs(reg.predict(X) - Y)
-        bias += df.mean()
+        bias = reg.predict(X, verbose=0).reshape(Y.shape) - Y
+        print(ml3, seed+1, Y.std()*bias)
         models.append(reg)
-        
-    bias /= n_seed 
-    print(bias)
 
     ############################
     
@@ -103,7 +98,7 @@ def mapping_f(ml3, rate):
 
     lat, clon, slon = grid_mesh()
 
-    delta = co2_delta(rate) + bias
+    delta = co2_delta(rate)
     
     for yy in range(start_year(), end_year() + 1):
     
