@@ -27,11 +27,11 @@ def surf_co2():
         k = yr == yy
         if k.sum() != 48: continue
         vyr = dat[k]
-        vmm = np.add.reduceat(vyr, np.arange(0, 48, 4), axis=0)
-        vmm /= 4
         for mm in range(0, 12):
             print(yy, mm+1)
-            v = np.interp(lat, yp, vmm[mm,:])
+            i = mm * 4
+            vmm = np.mean(vyr[i:i+4], axis=0)
+            v = np.interp(lat, yp, vmm)
             cdw, vaw = cdw_f(f"./ml_io/netcdf/xco2/xco2.{yy}.{mm+1:02d}.nc", "xco2", "ppm")
             for j in range(lon.size): vaw[:,j] = v
             cdw.close()
